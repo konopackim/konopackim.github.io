@@ -1,0 +1,16 @@
+{
+  "name": "fb_live_comments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/http-server/bin/http-server -p 80 --cors='Access-Control-Allow-Origin'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node node_modules/http-server/bin/http-server -p 80 --cors"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.12.1"
+  }
+}
