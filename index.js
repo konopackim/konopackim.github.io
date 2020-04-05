@@ -33,13 +33,17 @@ document.getElementById('set-video-id-btn').onclick = function(event) {
 
 
 document.getElementById('stream-btn').onclick = function() {
-  var source = new EventSource(`https://streaming-graph.facebook.com/${live_video_id}/live_comments?access_token=${accessToken}&comment_rate=one_per_two_seconds&fields=from{name,id},message`);
+  const streamUrl = encodeURIComponent(`https://streaming-graph.facebook.com/${live_video_id}/live_comments?access_token=${accessToken}&comment_rate=one_per_two_seconds`); //&fields=from{name,id},message`;
+  var source = new EventSource(streamUrl, { withCredentials: true });
   source.onmessage = function(event) {
     console.log(event);
     console.log(event.message);
     let comment = document.createElement('p');
     comment.innerHTML = event.message;
     document.getElementById('login-btn').appendChild(comment);
+  };
+  source.onerror = function(error) {
+    console.error("EventSource failed:", error);
   };
 }
 
